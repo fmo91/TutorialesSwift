@@ -122,6 +122,8 @@ El polimorfismo nos dice que:
 2. Una clase hija puede redefinir el comportamiento (los métodos) de su clase padre.
 3. Cuando una función nos pide un objeto de una clase determinada, podemos pasarle un objeto de una clase hija en su lugar. Lo mismo sucede si queremos asignar un objeto de una clase hija a una variable de tipo de la clase padre.
 
+Otra forma más sencilla de definir polimorfismo es que si llamo al método `animal.hablar()`, no sé si el animal es un `Pato`, un `Perro` o un `Gato`, lo que sí sabemos es que si el animal era un `Perro`, al hablar dirá "Guau", si el animal es un `Gato`, dirá "Miau", y si es un `Pato` dirá "Cuak!".
+
 Veamos todo esto en un ejemplo para que quede más claro.
 
 ```swift
@@ -185,9 +187,72 @@ El encapsulamiento es el último de los pilares de la programación orientada a 
 
 Para esto usamos los modificadores de acceso de Swift que son:
 
-- private
-- fileprivate
-- internal
-- public
+- **private**: una variable, función o clase privada no puede ser accedida desde fuera de su alcance. Es el modificador de acceso más restrictivo.
+- **fileprivate**: una variable o función fileprivate (no aplica a clases), fileprivate no puede ser accedida desde fuera del archivo en el que fue declarada.
+- **internal**: una variable, función o clase internal solo puede ser accedida dentro del módulo en el que fue declarada. Es el modificador de acceso por defecto, es decir que de no especificar nada, toda variable, función a clase que declaremos será internal.
+- **public**: una variable, función o clase public puede ser accedida desde cualquier otro lugar del código sin restricción.
+- **open**: una variable, función o clase public puede ser accedida desde cualquier otro lugar del código sin restricción, y además, si una clase es open, otra clase puede heredar de ella desde otro módulo, y si una función perteneciente a una clase es open, puede ser sobreescrita (override) desde cualquier otro módulo.
+
+Todo esto es un poco confuso puesto de este modo, pero es en realidad muy sencillo de comprender (salvo la parte de los módulos, que pueden ignorar por este curso).
+
+Pasándolo a un ejemplo:
+
+```swift
+class Persona {
+    private let nombre: String
+    let apellido: String
+
+    init(nombre: String, apellido: String) {
+        self.nombre = nombre
+        self.apellido = apellido
+    }
+}
+
+let juan = Persona(nombre: "Juan", apellido: "Gomez")
+
+print(juan.apellido) // Imprimirá "Gomez". Es internal.
+print(juan.nombre) // ERROR! nombre es private.
+```
 
 ### Protocolos
+
+Un protocolo es un "contrato" que define requisitos con los que una clase que "implementa" el protocolo debe cumplir. Es lo que en otros lenguajes de programación se llama interface. En la práctica, consiste en una lista de funciones.
+
+```swift
+// Un protocolo Hablador define la lista
+// de funciones que tiene que implementar una clase para 
+// ser un "Hablador", en el caso de este ejemplo, simplemente
+// una función que se llame "hablar".
+protocol Hablador {
+    func hablar() -> String
+}
+
+// Declarar que una clase implementa un protocolo
+// es igual que declarar una herencia
+class Persona: Hablador {
+    // Debemos cumplir con lo que especifica el protocolo.
+    func hablar() -> String {
+        return "Hola!"
+    }
+}
+
+class Perro: Hablador {
+    func hablar() -> String {
+        return "Guau!"
+    }
+}
+```
+
+Los protocolos son una excelente manera de implementar el polimorfismo
+
+```swift
+func imprimirSonido(de hablador: Hablador) {
+    print(hablador.hablar())
+}
+
+let persona = Persona()
+let perro = Perro()
+
+imprimirSonido(de: persona) // Hola!
+imprimirSonido(de: perro) // Guau!
+```
