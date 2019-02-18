@@ -9,18 +9,21 @@ El desarrollo no es algo sencillo. Y comenzar a desarrollar en un entorno que no
 
 ## Temario
 
-- [Introducción a Swift](Articulos/01-introduccion-a-swift.md)
-- [Programación orientada a objetos en Swift]()
-- [Introducción a iOS]()
-- [Introducción a Xcode]()
-- [Autolayout]()
-- [Modelo-Vista-Controlador]()
-- [Componentes básicos de UIKit]()
-- [Eventos]()
-- [Navegación]()
-- [Patrón Delegate y Data Sources]()
-- [Tablas]()
-- [Networking]()
+- [Introducción a Swift](Articulos/01-Introduccion-a-swift.md)
+  - [Tipos de datos opcionales](Articulos/01a-Tipos-de-datos-opcionales.md)
+- [Programación orientada a objetos en Swift](Articulos/02-Programacion-orientada-a-objetos.md)
+  - [Otras estructuras de datos](Articulos/02a-Otras-estructuras-de-datos.md)
+  - [Funciones como tipo de dato](Articulos/02b-Funciones-como-tipo-de-dato.md)
+- Introducción a iOS
+- Introducción a Xcode
+- Autolayout
+- Modelo-Vista-Controlador
+- Componentes básicos de UIKit
+- Eventos
+- Navegación
+- Patrón Delegate y Data Sources
+- Tablas
+- Networking
 
 ## Contacto
 
