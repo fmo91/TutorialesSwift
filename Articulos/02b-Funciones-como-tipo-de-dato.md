@@ -2,7 +2,7 @@
 
 Las funciones son bloques de código que se escriben bajo un nombre, y suelen usarse para reutilizar funcionalidad.
 En Swift, sin embargo, las funciones son un tipo de dato como cualquier otro. Es decir, una cierta variable `f` puede ser de tipo Int, Double, String, o función. Lo que implica, entre muchas otras cosas, que una función pueda recibir una función como argumento, o que una función pueda devolver otra función como resultado.
-Las funciones como tipo de dato también se llaman **closures**
+Las funciones como tipo de dato también se llaman **closures**.
 
 ## Sintaxis
 

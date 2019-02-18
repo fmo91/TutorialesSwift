@@ -99,15 +99,84 @@ let documento = Identificacion(
 )
 ```
 
+### Enum con valores asociados
+
+Los casos de la enum pueden tener datos asociados. Esto puede ser útil en ciertos casos. Veamos un ejemplo
+
+```swift
+enum Salud {
+    case sano
+    case enfermo(enfermedad: String)
+}
+
+struct Gato {
+    let nombre: String
+    let estadoDeSalud: Salud
+}
+
+let michi = Gato(nombre: "Michi", estadoDeSalud: Salud.sano)
+let manchas = Gato(nombre: "Manchas", estadoDeSalud: Salud.enfermo(enfermedad: "Gripe"))
+```
+
 ### Switch en una enum
+
+Una de las operaciones que más solemos usar sobre enums es el `switch`. Imaginemos que queremos preguntar sobre el estado de salud de los gatos.
+
+```swift
+func obtenerDiagnostico(gato: Gato) -> String {
+    switch gato.estadoDeSalud {
+    case Salud.sano:
+        return "El gato está sano"
+    // De esta manera manejamos el caso en el que un 
+    // case de la enum tenga un dato asociado.
+    case Salud.enfermo(let enfermedad):
+        return "El gato está enfermo. Tiene \(enfermedad)"
+    }
+}
+```
 
 ## Tuple
 
+Las tuplas son estructuras de datos muy limitadas que sirven solo en ciertos casos. Algunas cosas importantes que debemos saber de ellas:
 
+- Son un conjunto de valores asociados, nada más que eso
+- No pueden heredar de nada
+- Nada puede heredar de ellas
+- No pueden contener funciones
+- No se pueden extender
+
+```swift
+let direccion: (calle: String, numero: String) = (calle: "Rivadavia", numero: "18451")
+
+print(direccion.calle)
+print(direccion.numero)
+```
 
 ### Destructuring
 
+Destructuring es una operación por la cual decomponemos una tupla en las partes que la componen, en distinas variables.
+
+```swift
+let (calle, numero) = direccion
+
+print(calle)
+print(numero)
+```
+
 ### Resultados múltiples de una función
+
+Uno de los casos más útiles en los cuales nos puede servir una tupla es para devolver más de un resultado en una función.
+
+```swift
+func obtenerRango(base: Int, variacion: Int) -> (Int, Int) {
+    return (base - variacion, base + variacion)
+}
+
+let (minimo, maximo) = obtenerRango(base: 10, variacion: 2)
+
+print(minimo) // 8
+print(maximo) // 12
+```
 
 ## Typealias
 

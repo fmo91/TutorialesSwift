@@ -58,4 +58,32 @@ saludar(a: segundoNombre!) // Ahora sí funcionará!
 
 ### If-Let
 
-Una de las maneras que nos ayuda a trabajar con opcionales de una manera segura es a través de `if-let`. 
+Una de las maneras que nos ayuda a trabajar con opcionales de una manera segura es a través de `if-let`. El funcionamiento es sencillo. La condición del `if`, en este caso, será verdadera si la variable que estamos evaluando tiene valor, y será falsa si la variable es `nil`.
+
+```swift
+var segundoNombre: String?
+
+segundoNombre = "Martín"
+
+if let nombre = segundoNombre {
+    print("El segundo nombre es \(nombre)")
+} else {
+    print("No hay segundo nombre")
+}
+```
+
+### Guard-Let
+
+Hay otra forma similar a if-let, pero que evalúa en forma contraria, como **precondición**. `guard` y `let` se combinan para evaluar precondiciones opcionales.
+
+```swift
+func imprimirSegundoNombre(_ segundoNombre: String?) {
+    guard let _segundoNombre = segundoNombre else {
+        print("No hay segundo nombre")
+        return
+    }
+
+    print("El segundo nombre es \(_segundoNombre)")
+}
+```
+
